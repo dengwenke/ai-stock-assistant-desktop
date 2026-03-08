@@ -1,0 +1,76 @@
+{
+  "name": "ai-stock-assistant-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "vue-tsc --noEmit && electron-vite build",
+    "preview": "electron-vite preview",
+    "dist:dir": "npm run build && electron-builder --dir",
+    "dist:win": "npm run build && electron-builder --win nsis --x64 --arm64",
+    "typecheck": "vue-tsc --noEmit",
+    "dist:win:x64": "npm run build && electron-builder --win nsis --x64",
+    "dist:win:arm64": "npm run build && electron-builder --win nsis --arm64",
+    "dist:win:update-local": "npm run release:check && node scripts/github-release.mjs local",
+    "release:win:github": "npm run release:check && node scripts/github-release.mjs publish",
+    "release:check": "node scripts/release-preflight.mjs"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "axios": "^1.13.2",
+    "dompurify": "^3.3.0",
+    "echarts": "^6.0.0",
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.8.3",
+    "element-plus": "^2.11.5",
+    "marked": "^17.0.1",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.29",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.2.0",
+    "@types/node": "^24.6.1",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "electron": "^40.8.0",
+    "electron-builder": "^26.8.1",
+    "electron-vite": "^5.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.wink.ai-stock-assistant.desktop",
+    "productName": "AI Stock Assistant Desktop",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "AI-Stock-Assistant-Desktop-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    }
+  },
+  "description": "Windows desktop MVP for AI stock assistant with local market data storage",
+  "author": "OpenAI Codex CLI",
+  "config": {
+    "electron_builder_binaries_mirror": "https://npmmirror.com/mirrors/electron-builder-binaries/",
+    "auto_update_provider": "github",
+    "auto_update_owner": "dengwenke",
+    "auto_update_repo": "ai-stock-assistant-desktop"
+  }
+}
