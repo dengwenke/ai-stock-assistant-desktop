@@ -145,7 +145,7 @@ GH_TOKEN=your_github_token GH_UPDATE_OWNER=your-owner GH_UPDATE_REPO=your-repo n
 
 触发方式：
 
-- 推送标签：`desktop-v*`
+- 推送标签：`v*`（兼容 `desktop-v*`）
 - 或手动触发 `workflow_dispatch`
 
 工作流会：

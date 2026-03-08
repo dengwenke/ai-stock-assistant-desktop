@@ -42,7 +42,7 @@ npm run release:win:github
 
 ### 方式 B：GitHub Actions
 
-- 创建 tag：`desktop-v<version>`
+- 创建 tag：`v<version>`（兼容 `desktop-v<version>`）
 - push tag 后等待 `.github/workflows/desktop-release.yml` 完成
 
 ## 5. 发布后检查
